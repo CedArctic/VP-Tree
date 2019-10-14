@@ -9,7 +9,7 @@ POINTS_NUMBER = 1000  # Number of randomly generated points
 NEIGHBORS_NUMBER = 5  # Number of neighbors to find
 
 
-def devideAndConquer(points):
+def divideAndConquer(points):
     # Check to end recursion: if points array is of size 0 - we are returning a leaf
     if len(points) == 1:
         return Node([points[0], 0])
@@ -49,12 +49,12 @@ def devideAndConquer(points):
     if len(leftPoints) == 0:
         localNode.left = None
     else:
-        localNode.left = devideAndConquer(leftPoints)
+        localNode.left = divideAndConquer(leftPoints)
 
     if len(rightPoints) == 0:
         localNode.right = None
     else:
-        localNode.right = devideAndConquer(rightPoints)
+        localNode.right = divideAndConquer(rightPoints)
 
     # Return local node
     return localNode
@@ -127,8 +127,8 @@ ax.set_aspect(aspect='equal')
 points = utilities.random_points(POINTS_NUMBER)
 
 # Nodes contain the point and its median distance from all other points in the format Node([ point, median])
-# Call devideAndConquer to build the binary tree
-root = devideAndConquer(points)
+# Call divideAndConquer to build the binary tree
+root = divideAndConquer(points)
 
 # Generate a random point to use as a query
 query = Point(random.random(), random.random())
