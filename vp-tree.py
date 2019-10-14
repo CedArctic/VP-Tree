@@ -5,7 +5,7 @@ import utilities
 from utilities import Node, Point, DQueue
 
 # Constants
-POINTS_NUMBER = 100  # Number of randomly generated points
+POINTS_NUMBER = 1000  # Number of randomly generated points
 NEIGHBORS_NUMBER = 5  # Number of neighbors to find
 
 
@@ -121,6 +121,7 @@ def searchTree(startingNode):
 # Setup plot
 fig = plt.figure()
 ax = fig.add_axes([0, 0, 1, 1])
+ax.set_aspect(aspect='equal')
 
 # Generate random points on a two dimensional plane
 points = utilities.random_points(POINTS_NUMBER)
@@ -140,6 +141,7 @@ searchTree(root)
 print("Query Point: \n")
 query.print()
 ax.plot(query.X, query.Y, 'bo')
+ax.add_patch(plt.Circle((query.X, query.Y), neighbors.peek_distance(), color='b', alpha=0.2))
 print("Neighbors: ")
 for point in points:
     ax.plot(point.X, point.Y, 'ro')
